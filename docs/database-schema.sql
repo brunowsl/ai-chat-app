@@ -16,6 +16,9 @@ CREATE TABLE companies (
     name VARCHAR(255) NOT NULL,
     slug VARCHAR(100) UNIQUE NOT NULL,
     keycloak_company_id VARCHAR(255) UNIQUE,
+    n8n_instance_url VARCHAR(500),
+    n8n_api_key_encrypted TEXT,
+    n8n_webhook_secret VARCHAR(255),
     credits_balance DECIMAL(20, 8) NOT NULL DEFAULT 0 CHECK (credits_balance >= 0),
     credits_total_purchased DECIMAL(20, 8) NOT NULL DEFAULT 0,
     credits_total_consumed DECIMAL(20, 8) NOT NULL DEFAULT 0,
@@ -28,9 +31,13 @@ CREATE TABLE companies (
 CREATE INDEX idx_companies_slug ON companies(slug);
 CREATE INDEX idx_companies_is_active ON companies(is_active);
 CREATE INDEX idx_companies_keycloak_id ON companies(keycloak_company_id);
+CREATE INDEX idx_companies_n8n_url ON companies(n8n_instance_url);
 
 -- Comentários
 COMMENT ON TABLE companies IS 'Empresas (tenants) cadastradas no sistema';
+COMMENT ON COLUMN companies.n8n_instance_url IS 'URL da instância n8n dedicada da empresa';
+COMMENT ON COLUMN companies.n8n_api_key_encrypted IS 'API key da instância n8n (criptografada)';
+COMMENT ON COLUMN companies.n8n_webhook_secret IS 'Secret para validar webhooks da instância n8n';
 COMMENT ON COLUMN companies.credits_balance IS 'Saldo atual de créditos disponíveis';
 COMMENT ON COLUMN companies.credits_total_purchased IS 'Total histórico de créditos comprados';
 COMMENT ON COLUMN companies.credits_total_consumed IS 'Total histórico de créditos consumidos';
@@ -98,6 +105,7 @@ COMMENT ON COLUMN llm_models.cost_per_million_output_tokens IS 'Custo em USD por
 -- ============================================
 CREATE TABLE automations (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    company_id UUID NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     n8n_workflow_id VARCHAR(255) NOT NULL,
@@ -107,16 +115,20 @@ CREATE TABLE automations (
     is_active BOOLEAN NOT NULL DEFAULT true,
     input_schema JSONB,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_automation_per_company UNIQUE(company_id, n8n_workflow_id)
 );
 
 -- Índices para automations
+CREATE INDEX idx_automations_company_id ON automations(company_id);
 CREATE INDEX idx_automations_is_active ON automations(is_active);
-CREATE INDEX idx_automations_n8n_workflow_id ON automations(n8n_workflow_id);
+CREATE INDEX idx_automations_company_active ON automations(company_id, is_active);
 CREATE INDEX idx_automations_llm_model_id ON automations(llm_model_id);
 
 -- Comentários
-COMMENT ON TABLE automations IS 'Automações disponíveis para execução';
+COMMENT ON TABLE automations IS 'Automações disponíveis para execução (por empresa)';
+COMMENT ON COLUMN automations.company_id IS 'Empresa proprietária da automação';
+COMMENT ON COLUMN automations.n8n_workflow_id IS 'ID do workflow na instância n8n da empresa';
 COMMENT ON COLUMN automations.llm_model_id IS 'Modelo LLM padrão utilizado por esta automação';
 COMMENT ON COLUMN automations.estimated_tokens IS 'Estimativa de tokens que a automação consome';
 COMMENT ON COLUMN automations.estimated_credits IS 'Estimativa de créditos (calculado automaticamente)';
@@ -128,7 +140,7 @@ COMMENT ON COLUMN automations.input_schema IS 'JSON Schema para validação dos 
 -- ============================================
 CREATE TABLE credit_transactions (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    company_id UUID NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+    company_id UUID NOT NULL REFERENCES companies(id) ON DELETE RESTRICT,
     user_id UUID REFERENCES users(id) ON DELETE SET NULL,
     automation_id UUID REFERENCES automations(id) ON DELETE SET NULL,
     llm_model_id UUID REFERENCES llm_models(id) ON DELETE SET NULL,
@@ -160,10 +172,14 @@ COMMENT ON COLUMN credit_transactions.type IS 'Tipo: purchase, consumption, refu
 -- ============================================
 CREATE TABLE automation_executions (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    automation_id UUID NOT NULL REFERENCES automations(id) ON DELETE CASCADE,
+    automation_id UUID REFERENCES automations(id) ON DELETE SET NULL,
+    automation_name VARCHAR(255) NOT NULL,
     company_id UUID NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
-    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id) ON DELETE SET NULL,
+    user_name VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL,
     llm_model_id UUID REFERENCES llm_models(id) ON DELETE SET NULL,
+    llm_model_name VARCHAR(255),
     credit_transaction_id UUID REFERENCES credit_transactions(id) ON DELETE SET NULL,
     tokens_input BIGINT DEFAULT 0,
     tokens_output BIGINT DEFAULT 0,
@@ -183,6 +199,7 @@ CREATE TABLE automation_executions (
 CREATE INDEX idx_automation_executions_automation_id ON automation_executions(automation_id);
 CREATE INDEX idx_automation_executions_company_id ON automation_executions(company_id);
 CREATE INDEX idx_automation_executions_user_id ON automation_executions(user_id);
+CREATE INDEX idx_automation_executions_user_email ON automation_executions(user_email);
 CREATE INDEX idx_automation_executions_llm_model_id ON automation_executions(llm_model_id);
 CREATE INDEX idx_automation_executions_status ON automation_executions(status);
 CREATE INDEX idx_automation_executions_created_at ON automation_executions(created_at DESC);
@@ -190,7 +207,13 @@ CREATE INDEX idx_automation_executions_n8n_id ON automation_executions(n8n_execu
 
 -- Comentários
 COMMENT ON TABLE automation_executions IS 'Histórico de execuções de automações';
+COMMENT ON COLUMN automation_executions.automation_id IS 'Referência à automação (pode ser NULL se deletada)';
+COMMENT ON COLUMN automation_executions.automation_name IS 'Nome da automação no momento da execução (snapshot)';
+COMMENT ON COLUMN automation_executions.user_id IS 'Referência ao usuário (pode ser NULL se deletado)';
+COMMENT ON COLUMN automation_executions.user_name IS 'Nome do usuário no momento da execução (snapshot)';
+COMMENT ON COLUMN automation_executions.user_email IS 'Email do usuário no momento da execução (snapshot)';
 COMMENT ON COLUMN automation_executions.llm_model_id IS 'Modelo LLM utilizado nesta execução';
+COMMENT ON COLUMN automation_executions.llm_model_name IS 'Nome do modelo no momento da execução (snapshot)';
 COMMENT ON COLUMN automation_executions.tokens_input IS 'Tokens de entrada (prompt)';
 COMMENT ON COLUMN automation_executions.tokens_output IS 'Tokens de saída (resposta gerada)';
 COMMENT ON COLUMN automation_executions.tokens_total IS 'Total de tokens (input + output)';
@@ -351,13 +374,14 @@ CREATE OR REPLACE VIEW automation_executions_detailed AS
 SELECT
     ae.id,
     ae.automation_id,
-    a.name as automation_name,
+    COALESCE(a.name, ae.automation_name) as automation_name,
     ae.company_id,
     c.name as company_name,
     ae.user_id,
-    u.name as user_name,
+    COALESCE(u.name, ae.user_name) as user_name,
+    COALESCE(u.email, ae.user_email) as user_email,
     ae.llm_model_id,
-    m.name as model_name,
+    COALESCE(m.name, ae.llm_model_name) as model_name,
     m.provider as model_provider,
     ae.tokens_input,
     ae.tokens_output,
@@ -371,9 +395,9 @@ SELECT
     ae.created_at,
     EXTRACT(EPOCH FROM (ae.completed_at - ae.started_at)) as execution_time_seconds
 FROM automation_executions ae
-JOIN automations a ON a.id = ae.automation_id
 JOIN companies c ON c.id = ae.company_id
-JOIN users u ON u.id = ae.user_id
+LEFT JOIN automations a ON a.id = ae.automation_id
+LEFT JOIN users u ON u.id = ae.user_id
 LEFT JOIN llm_models m ON m.id = ae.llm_model_id
 ORDER BY ae.created_at DESC;
 
@@ -432,28 +456,8 @@ INSERT INTO llm_models (name, provider, credits_per_input_token, credits_per_out
 ('gpt-4o', 'openai', 0.00000250, 0.00001000, 2.50, 10.00),
 ('gpt-4o-mini', 'openai', 0.00000015, 0.00000060, 0.15, 0.60);
 
--- Inserir automação de exemplo
-INSERT INTO automations (name, description, n8n_workflow_id, llm_model_id, estimated_tokens, estimated_credits, input_schema)
-SELECT
-    'Geração de Contrato de Prestação de Serviços',
-    'Automação para gerar contrato de prestação de serviços personalizado',
-    'workflow-001',
-    id,
-    100000, -- Estimativa: 25k input + 75k output = 100k total
-    calculate_credits_from_tokens(25000, 75000, id), -- 25k input, 75k output
-    '{
-        "type": "object",
-        "required": ["client_name", "service_description", "value"],
-        "properties": {
-            "client_name": {"type": "string"},
-            "service_description": {"type": "string"},
-            "value": {"type": "number"},
-            "start_date": {"type": "string", "format": "date"}
-        }
-    }'::jsonb
-FROM llm_models
-WHERE name = 'claude-sonnet-4.5'
-LIMIT 1;
+-- Nota: Automações são criadas por empresa, não há seed global
+-- Cada empresa cria suas automações na sua instância n8n dedicada
 
 -- ============================================
 -- Índices adicionais para performance
