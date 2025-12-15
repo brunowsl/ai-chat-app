@@ -1,4 +1,4 @@
-# Modelo de Monetização - LexTech Chat
+# Modelo de Monetização - Lexia
 
 ## Visão Geral
 
@@ -20,7 +20,7 @@ Sistema de monetização baseado em assinatura mensal fixa com modelo de crédit
 - Workshops mensais de boas práticas
 
 #### 2. **Acesso Total à Ferramenta**
-- Acesso completo à plataforma LexTech Chat
+- Acesso completo à plataforma Lexia
 - Interface web responsiva
 - Painel administrativo completo
 - Relatórios e dashboards de uso
@@ -335,7 +335,7 @@ Expanda seu arsenal de automações além das 4 incluídas no plano base.
 
 **Propriedade:**
 - Automação desenvolvida pertence ao cliente
-- LexTech mantém direito de uso da arquitetura base
+- Lexia mantém direito de uso da arquitetura base
 - Cliente não pode revender ou compartilhar a automação
 
 **Suporte:**
@@ -450,13 +450,13 @@ A: Sim, todas as aulas ficam disponíveis por 90 dias para os participantes.
 ### Canais de Atendimento
 
 **Suporte Técnico:**
-- 📧 Email: suporte@lextech.chat
+- 📧 Email: suporte@lexia.com.br
 - 💬 WhatsApp: (11) 9999-9999
 - 📞 Telefone: (11) 3333-3333
-- 🌐 Portal: https://suporte.lextech.chat
+- 🌐 Portal: https://suporte.lexia.com.br
 
 **Comercial/Vendas:**
-- 📧 Email: vendas@lextech.chat
+- 📧 Email: vendas@lexia.com.br
 - 💬 WhatsApp: (11) 8888-8888
 - 📞 Telefone: (11) 4444-4444
 
@@ -516,7 +516,7 @@ A: Sim, todas as aulas ficam disponíveis por 90 dias para os participantes.
 
 ## Aprovações
 
-**Documento:** Modelo de Monetização - LexTech Chat
+**Documento:** Modelo de Monetização - Lexia
 **Versão:** 1.0
 **Data:** Janeiro/2025
 **Aprovado por:** [Nome do Responsável Comercial]

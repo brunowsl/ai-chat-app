@@ -23,7 +23,7 @@ Sistema multitenant para geração automatizada de documentos jurídicos, integr
 ### 3.1 Autenticação e Autorização (Keycloak)
 
 #### 3.1.1 Estrutura de Realms/Clients/Groups
-- **Realm**: Realm dedicado para a aplicação (ex: `lextech-chat`)
+- **Realm**: Realm dedicado para a aplicação (ex: `lexia`)
 - **Client**: Cliente OAuth configurado para o frontend
 - **Groups**: Cada empresa é representada por um Group no Keycloak
   - Nome do grupo: slug da empresa (ex: `/empresa-abc`)
@@ -34,7 +34,7 @@ Sistema multitenant para geração automatizada de documentos jurídicos, integr
 
 #### 3.1.2 Estrutura de Groups
 ```
-Keycloak Realm: "lextech-chat"
+Keycloak Realm: "lexia"
 ├── Group: "/empresa-abc" (id: uuid-123-abc)
 │   ├── User: joao@empresa-abc.com
 │   ├── User: maria@empresa-abc.com
@@ -363,12 +363,12 @@ credits_total = credits_input + credits_output  // Valor preciso, sem arredondam
 
 ```env
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/lextech_chat
+DATABASE_URL=postgresql://user:password@localhost:5432/lexia
 
 # Keycloak
 KEYCLOAK_URL=https://keycloak.example.com
-KEYCLOAK_REALM=lextech
-KEYCLOAK_CLIENT_ID=lextech-app
+KEYCLOAK_REALM=lexia
+KEYCLOAK_CLIENT_ID=lexia-app
 KEYCLOAK_CLIENT_SECRET=secret
 
 # n8n (Orchestration/Provisioning - não são as instâncias das empresas)
@@ -626,7 +626,7 @@ model AutomationExecution {
 
 **Arquivo `.env`:**
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/lextech_chat?schema=public"
+DATABASE_URL="postgresql://user:password@localhost:5432/lexia?schema=public"
 ```
 
 ### 8.6 Workflows Prisma

@@ -1,0 +1,120 @@
+/* Lexia - Tema Jurídico Profissional */
+
+:root {
+  /* Paleta principal - Vermelho Bordô (cor tradicional da advocacia brasileira) */
+  --law-red-50: #fef2f2;
+  --law-red-100: #fee2e2;
+  --law-red-200: #fecaca;
+  --law-red-300: #fca5a5;
+  --law-red-400: #f87171;
+  --law-red-500: #ef4444;
+  --law-red-600: #dc2626;
+  --law-red-700: #991b1b;
+  --law-red-800: #7f1d1d;
+  --law-red-900: #5c0f0f;
+  --law-red-950: #450a0a;
+
+  /* Cores de destaque */
+  --law-gold: #d4af37;
+  --law-gold-dark: #b8941f;
+
+  /* Cinzas neutros */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Estados */
+  --success: #059669;
+  --warning: #d97706;
+  --error: #dc2626;
+  --info: #2563eb;
+
+  /* Customização do tema PrimeVue Aura - Vermelho Bordô */
+  --p-primary-50: var(--law-red-50);
+  --p-primary-100: var(--law-red-100);
+  --p-primary-200: var(--law-red-200);
+  --p-primary-300: var(--law-red-300);
+  --p-primary-400: var(--law-red-400);
+  --p-primary-500: var(--law-red-500);
+  --p-primary-600: var(--law-red-600);
+  --p-primary-700: var(--law-red-700);
+  --p-primary-800: var(--law-red-800);
+  --p-primary-900: var(--law-red-900);
+  --p-primary-950: var(--law-red-950);
+
+  /* Cor primária padrão - Bordô */
+  --p-primary-color: var(--law-red-700);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--gray-50);
+  color: var(--gray-900);
+  line-height: 1.6;
+}
+
+/* Utilitários */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+.gap-4 {
+  gap: 1.5rem;
+}

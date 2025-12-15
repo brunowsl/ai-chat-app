@@ -1,7 +1,7 @@
 # Pesquisa de Mercado - Modelos de Cobrança por Tokens/Créditos de APIs de LLM
 
 **Data:** 11 de Dezembro de 2025
-**Objetivo:** Validar o modelo de cobrança por tokens/créditos implementado no LexTech Chat contra melhores práticas de mercado
+**Objetivo:** Validar o modelo de cobrança por tokens/créditos implementado no Lexia contra melhores práticas de mercado
 **Status:** ✅ Modelo validado e alinhado com padrões da indústria
 
 ---
@@ -10,14 +10,14 @@
 
 ### 🎯 Principais Conclusões
 
-**O modelo de cobrança implementado no LexTech Chat está CORRETO e alinhado com as melhores práticas de mercado.**
+**O modelo de cobrança implementado no Lexia está CORRETO e alinhado com as melhores práticas de mercado.**
 
 #### Validações Importantes:
 
 ✅ **Separação de tokens input/output é PADRÃO da indústria**
 - Anthropic, OpenAI, Azure e todas as grandes plataformas separam
 - Output tokens custam 3-5x mais que input tokens
-- Schema do LexTech com `credits_per_input_token` e `credits_per_output_token` está PERFEITO
+- Schema do Lexia com `credits_per_input_token` e `credits_per_output_token` está PERFEITO
 
 ✅ **Modelo híbrido (base + consumo) é IDEAL para B2B SaaS**
 - Usado por Copy.ai, Voiceflow, Relevance AI
@@ -86,7 +86,7 @@
 ✅ Modelos de commitment/PTU para grandes volumes empresariais
 ✅ Descontos significativos (50%) para batch/async processing
 
-**Conclusão:** O modelo do LexTech com separação de input/output está 100% alinhado com o padrão da indústria.
+**Conclusão:** O modelo do Lexia com separação de input/output está 100% alinhado com o padrão da indústria.
 
 ---
 
@@ -186,7 +186,7 @@
 ✅ **Pass-through pricing** (sem markup) é RARO - apenas Botpress observado
 ✅ **Markups típicos:** 10% (Relevance AI) até 3-5x (Chatbase)
 
-**Conclusão:** Modelo híbrido do LexTech está alinhado. Transparência de tokens é diferencial para mercado B2B jurídico.
+**Conclusão:** Modelo híbrido do Lexia está alinhado. Transparência de tokens é diferencial para mercado B2B jurídico.
 
 ---
 
@@ -200,7 +200,7 @@
 credits_per_token = cost_per_million_tokens / 1_000_000
 ```
 
-**Exemplo (usado pelo LexTech Chat):**
+**Exemplo (usado pelo Lexia):**
 - Claude Sonnet 4.5: $3/MTok input → 0.000003 créditos/token
 - GPT-4o: $2.50/MTok input → 0.0000025 créditos/token
 
@@ -259,7 +259,7 @@ credits_per_token = (cost_per_million_tokens * markup_multiplier) / 1_000_000
 
 ### 🎯 Recomendação de Melhores Práticas
 
-**Para Transparência B2B (como LexTech Chat):**
+**Para Transparência B2B (como Lexia):**
 ```
 1. Base: credits_per_token = cost_per_million_tokens / 1_000_000
 2. Markup: 1.5x - 3x dependendo do serviço agregado
@@ -281,7 +281,7 @@ credits_per_token = (cost_per_million_tokens * markup_multiplier) / 1_000_000
 3. Markup de 3-10x (padrão de mercado)
 ```
 
-**Conclusão:** LexTech está usando Método 1 (equivalência direta), que é ideal para transparência B2B. Markup adicional deve ser justificado pelos serviços agregados (treinamentos, suporte, automações curadas).
+**Conclusão:** Lexia está usando Método 1 (equivalência direta), que é ideal para transparência B2B. Markup adicional deve ser justificado pelos serviços agregados (treinamentos, suporte, automações curadas).
 
 ---
 
@@ -330,7 +330,7 @@ credits_per_token = (cost_per_million_tokens * markup_multiplier) / 1_000_000
 - Foco em simplicidade vs transparência
 - Quando há muitos passos além de LLM
 
-### 🎯 Recomendação para LexTech Chat
+### 🎯 Recomendação para Lexia
 
 ✅ **MANTER SEPARAÇÃO** de input e output tokens
 
@@ -361,7 +361,7 @@ credits_per_output_token DECIMAL(20, 8)
 
 ### Estratégias Observadas
 
-#### 1. Sistema de Estimativas + Cobrança Real (Recomendado para LexTech)
+#### 1. Sistema de Estimativas + Cobrança Real (Recomendado para Lexia)
 
 **Como Funciona:**
 ```
@@ -377,7 +377,7 @@ Após execução:
 - Melhora estimativas futuras com ML
 ```
 
-**Exemplo do Modelo LexTech:**
+**Exemplo do Modelo Lexia:**
 ```sql
 -- Na tabela automations
 estimated_tokens BIGINT
@@ -466,7 +466,7 @@ credits_consumed DECIMAL(20, 8) DEFAULT 0
 
 ### 🎯 Boas Práticas Combinadas
 
-**Sistema Recomendado para LexTech Chat:**
+**Sistema Recomendado para Lexia:**
 
 1. **Estimativa antes da execução**
    - "Esta operação consumirá aproximadamente 5-8 créditos"
@@ -516,7 +516,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-✅ **Modelo atual do LexTech está CORRETO**
+✅ **Modelo atual do Lexia está CORRETO**
 
 ---
 
@@ -551,7 +551,7 @@ $$ LANGUAGE plpgsql;
 **Markup Típico por Segmento:**
 - **Developer tools:** 0-20% (ex: Helicone, LangSmith)
 - **SMB platforms:** 50-200% (ex: Chatbase, Voiceflow)
-- **Enterprise solutions:** 100-500% (ex: LexTech, Ada)
+- **Enterprise solutions:** 100-500% (ex: Lexia, Ada)
 - **Consumer apps:** 300-1000% (ex: Jasper, Copy.ai)
 
 #### 2. Flat Rate por Assento (Modelo SaaS Tradicional)
@@ -572,14 +572,14 @@ $$ LANGUAGE plpgsql;
 ✅ Foco em colaboração/equipes
 ✅ Simplicidade > transparência
 
-**Desvantagens para LexTech:**
+**Desvantagens para Lexia:**
 ❌ Uso varia MUITO entre clientes
 ❌ Risco de power users gerarem prejuízo
 ❌ Dificulta pricing de valor
 
-#### 3. Modelo Híbrido: Base + Consumo (Recomendado para LexTech)
+#### 3. Modelo Híbrido: Base + Consumo (Recomendado para Lexia)
 
-**Exemplo: LexTech Chat (Proposto)**
+**Exemplo: Lexia (Proposto)**
 ```
 Base fixa: R$ 3.000/mês
 Inclui:
@@ -633,7 +633,7 @@ Growth: $1.000/mês
 
 ### 🎯 Conclusão sobre Precificação
 
-**Modelo Híbrido do LexTech está IDEAL para:**
+**Modelo Híbrido do Lexia está IDEAL para:**
 - Mercado B2B jurídico
 - Clientes com uso variável
 - Necessidade de previsibilidade + flexibilidade
@@ -660,7 +660,7 @@ Growth: $1.000/mês
 #### Exemplos
 - **Relevance AI:** Créditos comprados rollover indefinidamente
 - **Voiceflow:** Planos anuais recebem créditos upfront
-- **LexTech:** 300 créditos/mês inclusos + pacotes extras (validade 90 dias)
+- **Lexia:** 300 créditos/mês inclusos + pacotes extras (validade 90 dias)
 
 #### Vantagens
 ✅ **Fluxo de caixa:** Receita antecipada
@@ -684,7 +684,7 @@ Growth: $1.000/mês
 ✅ Transparência sobre expiração
 ```
 
-**Exemplo de Política (LexTech):**
+**Exemplo de Política (Lexia):**
 ```
 Créditos mensais (300):
 - Renovam dia 1º de cada mês
@@ -697,7 +697,7 @@ Créditos adicionais:
 - Alertas 30 dias antes de expirar
 ```
 
-✅ **Modelo LexTech está bem estruturado**
+✅ **Modelo Lexia está bem estruturado**
 
 ### Pós-pagamento (Postpaid/Metered)
 
@@ -769,7 +769,7 @@ Créditos adicionais:
 ❌ **Complexidade:** Dois sistemas de billing
 ❌ **Comunicação:** Precisa educar clientes
 
-### 🎯 Recomendação para LexTech Chat
+### 🎯 Recomendação para Lexia
 
 **Modelo Atual (Híbrido) está EXCELENTE:**
 ```
@@ -810,7 +810,7 @@ Justificativa:
 
 **Multitenancy:**
 ```sql
--- ✅ LexTech já implementa corretamente
+-- ✅ Lexia já implementa corretamente
 CREATE TABLE companies (
     id UUID PRIMARY KEY,
     slug VARCHAR(100) UNIQUE,
@@ -833,7 +833,7 @@ n8n_webhook_secret VARCHAR(255),
 #### 2. Gestão de Créditos por Empresa
 
 ```sql
--- ✅ LexTech implementa corretamente
+-- ✅ Lexia implementa corretamente
 CREATE TABLE companies (
     credits_balance DECIMAL(20, 8) NOT NULL DEFAULT 0,
     credits_total_purchased DECIMAL(20, 8) NOT NULL DEFAULT 0,
@@ -862,7 +862,7 @@ CREATE TABLE credit_transactions (
 #### 3. Rastreabilidade e Auditoria
 
 ```sql
--- ✅ LexTech mantém snapshots
+-- ✅ Lexia mantém snapshots
 CREATE TABLE automation_executions (
     automation_name VARCHAR(255) NOT NULL, -- snapshot
     user_name VARCHAR(255) NOT NULL, -- snapshot
@@ -891,7 +891,7 @@ CREATE TABLE automation_executions (
 ```
 Fatura Mensal = Base Subscription + Overages/Add-ons
 
-LexTech Exemplo:
+Lexia Exemplo:
 R$ 3.000,00 - Plano Professional (base)
   ↳ 300 créditos inclusos
   ↳ Usuários ilimitados
@@ -906,7 +906,7 @@ Total: R$ 4.050,00
 **Features Empresariais:**
 ✅ Nota fiscal automática
 ✅ Múltiplas formas de pagamento (boleto, cartão, transferência)
-✅ Contratos anuais com desconto (10% no caso do LexTech)
+✅ Contratos anuais com desconto (10% no caso do Lexia)
 ✅ Centro de custo / PO numbers
 ✅ Invoicing antecipado (NET 30)
 ✅ Aprovações internas (workflows de compra)
@@ -938,7 +938,7 @@ Cliente B (Enterprise):
 
 #### 6. Reporting e Analytics
 
-**Views Implementadas no LexTech:**
+**Views Implementadas no Lexia:**
 ```sql
 -- ✅ Resumo por empresa
 CREATE VIEW company_credits_summary AS ...
@@ -981,7 +981,7 @@ CREATE VIEW automation_executions_detailed AS ...
 
 #### 7. Suporte e SLA
 
-**Modelo LexTech (Excelente):**
+**Modelo Lexia (Excelente):**
 ```
 ✅ SLA 99.5% de disponibilidade
 ✅ Suporte dedicado (email, WhatsApp, telefone)
@@ -1003,7 +1003,7 @@ CREATE VIEW automation_executions_detailed AS ...
 
 ---
 
-## 9. Comparação: Modelo LexTech vs. Mercado
+## 9. Comparação: Modelo Lexia vs. Mercado
 
 ### Análise do Modelo Proposto
 
@@ -1256,7 +1256,7 @@ CREATE TABLE cost_centers (
 
 ## 10. Tabela Comparativa Completa
 
-| Aspecto | LexTech Chat | Mercado | Status | Recomendação |
+| Aspecto | Lexia | Mercado | Status | Recomendação |
 |---------|--------------|---------|--------|--------------|
 | **Separação input/output** | ✅ Sim | ✅ Padrão | **CORRETO** | Manter |
 | **Modelo híbrido** | ✅ Base + consumo | ✅ Comum B2B | **CORRETO** | Manter |
@@ -1365,7 +1365,7 @@ ALTER TABLE automation_executions ADD COLUMN
 ```
 Comunicação de Marketing:
 "Diferente de outras plataformas que escondem custos,
-no LexTech você vê exatamente quanto cada automação consome.
+no Lexia você vê exatamente quanto cada automação consome.
 
 ✅ Tokens input vs output separados
 ✅ Histórico completo de consumo
@@ -1414,7 +1414,7 @@ Você economizou 83% este mês"
 
 ### Avaliação Final: ⭐⭐⭐⭐⭐ (5/5)
 
-**O modelo implementado no LexTech Chat está MUITO BEM ALINHADO com as melhores práticas de mercado.**
+**O modelo implementado no Lexia está MUITO BEM ALINHADO com as melhores práticas de mercado.**
 
 #### Pontos Fortes Principais:
 
