@@ -3,7 +3,7 @@
     <!-- Navigation Bar -->
     <nav class="landing-nav">
       <div class="nav-content">
-        <AppLogo size="small" />
+        <AppLogo size="large" />
         <NuxtLink to="/login" class="login-link">
           <Button label="Entrar" outlined icon="pi pi-sign-in" />
         </NuxtLink>
@@ -12,9 +12,14 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
+      <div class="hero-background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-pattern"></div>
+      </div>
       <div class="hero-content">
         <div class="hero-text">
-          <AppLogo size="large" class="hero-logo" />
           <h1 class="hero-title">
             Automatize documentos jurídicos com <span class="highlight">Inteligência Artificial</span>
           </h1>
@@ -22,21 +27,59 @@
             Plataforma multitenant que acelera a produção de documentos jurídicos com IA,
             economizando tempo e reduzindo custos para escritórios de advocacia.
           </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">10x</div>
+              <div class="stat-label">Mais Rápido</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">Economia de Tempo</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label">Disponível</div>
+            </div>
+          </div>
           <div class="hero-cta">
-            <NuxtLink to="/login">
-              <Button label="Começar Agora" size="large" class="cta-primary" icon="pi pi-arrow-right" iconPos="right" />
-            </NuxtLink>
-            <Button label="Agendar Demo" size="large" class="cta-secondary" outlined icon="pi pi-video" />
+            <a href="#contato">
+              <Button label="Fale Conosco" size="large" class="cta-primary" icon="pi pi-comments" iconPos="right" />
+            </a>
+            <a href="#contato">
+              <Button label="Contratar Agora" size="large" class="cta-secondary" outlined icon="pi pi-check" />
+            </a>
           </div>
         </div>
         <div class="hero-visual">
-          <div class="hero-card">
-            <i class="pi pi-bolt"></i>
-            <h3>Petição Inicial - Trabalhista</h3>
-            <p>Gera petições iniciais completas em segundos</p>
-            <div class="card-meta">
-              <span><i class="pi pi-wallet"></i> 12.50 créditos</span>
-              <Button label="Executar" size="small" />
+          <div class="floating-cards">
+            <div class="hero-card card-1">
+              <div class="card-header">
+                <i class="pi pi-bolt"></i>
+                <span class="card-status">Processando...</span>
+              </div>
+              <h3>Petição Inicial - Trabalhista</h3>
+              <p>Gera petições iniciais completas em segundos</p>
+              <div class="card-progress">
+                <div class="progress-bar"></div>
+              </div>
+              <div class="card-meta">
+                <span><i class="pi pi-wallet"></i> 12.50 créditos</span>
+                <Button label="Executar" size="small" />
+              </div>
+            </div>
+            <div class="hero-card card-2">
+              <div class="mini-card-content">
+                <i class="pi pi-check-circle"></i>
+                <span>Petição inicial gerada com sucesso</span>
+              </div>
+            </div>
+            <div class="hero-card card-3">
+              <div class="mini-card-content">
+                <i class="pi pi-clock"></i>
+                <span>Tempo médio: 8s</span>
+              </div>
             </div>
           </div>
         </div>
@@ -146,49 +189,35 @@
     <!-- Pricing Section -->
     <section class="pricing-section">
       <div class="section-header">
-        <h2>Planos Flexíveis</h2>
-        <p>Pague apenas pelo que usar com nosso sistema de créditos</p>
+        <h2>Planos para Escritórios</h2>
+        <p>Escolha o plano ideal para as necessidades do seu escritório</p>
       </div>
 
       <div class="pricing-cards">
-        <div class="pricing-card">
-          <h3>Starter</h3>
-          <div class="price">
-            <span class="currency">R$</span>
-            <span class="amount">499</span>
-            <span class="period">/mês</span>
-          </div>
-          <ul class="features-list">
-            <li><i class="pi pi-check"></i> 5.000 créditos/mês</li>
-            <li><i class="pi pi-check"></i> Até 10 usuários</li>
-            <li><i class="pi pi-check"></i> Automações básicas</li>
-            <li><i class="pi pi-check"></i> Suporte por email</li>
-          </ul>
-          <Button label="Começar" outlined class="plan-button" />
-        </div>
-
         <div class="pricing-card featured">
-          <div class="popular-badge">Mais Popular</div>
-          <h3>Professional</h3>
+          <div class="popular-badge">Plano Padrão</div>
+          <h3>Escritórios</h3>
           <div class="price">
             <span class="currency">R$</span>
-            <span class="amount">1.499</span>
+            <span class="amount">3.000</span>
             <span class="period">/mês</span>
           </div>
           <ul class="features-list">
-            <li><i class="pi pi-check"></i> 20.000 créditos/mês</li>
+            <li><i class="pi pi-check"></i> 300 créditos/mês</li>
             <li><i class="pi pi-check"></i> Usuários ilimitados</li>
-            <li><i class="pi pi-check"></i> Automações customizadas</li>
+            <li><i class="pi pi-check"></i> Todas as automações</li>
             <li><i class="pi pi-check"></i> Suporte prioritário</li>
             <li><i class="pi pi-check"></i> Analytics avançado</li>
           </ul>
-          <Button label="Começar" class="plan-button" />
+          <a href="#contato">
+            <Button label="Contratar" class="plan-button" />
+          </a>
         </div>
 
         <div class="pricing-card">
-          <h3>Enterprise</h3>
+          <h3>Personalizado</h3>
           <div class="price">
-            <span class="amount">Personalizado</span>
+            <span class="amount">Sob Consulta</span>
           </div>
           <ul class="features-list">
             <li><i class="pi pi-check"></i> Créditos personalizados</li>
@@ -197,21 +226,63 @@
             <li><i class="pi pi-check"></i> SLA garantido</li>
             <li><i class="pi pi-check"></i> Gerente de conta dedicado</li>
           </ul>
-          <Button label="Fale Conosco" outlined class="plan-button" />
+          <a href="#contato">
+            <Button label="Fale Conosco" outlined class="plan-button" />
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="cta-content">
-        <h2>Pronto para transformar seu escritório?</h2>
-        <p>Junte-se a centenas de escritórios que já automatizam documentos com Lexia</p>
-        <div class="cta-buttons">
-          <NuxtLink to="/login">
-            <Button label="Criar Conta Grátis" size="large" class="cta-primary" icon="pi pi-user-plus" />
-          </NuxtLink>
-          <Button label="Agendar Demonstração" size="large" outlined class="cta-secondary" icon="pi pi-calendar" />
+    <!-- Contact Section -->
+    <section id="contato" class="contact-section">
+      <div class="contact-content">
+        <div class="contact-header">
+          <h2>Fale Conosco</h2>
+          <p>Entre em contato com nossa equipe para contratar ou esclarecer dúvidas</p>
+        </div>
+
+        <div class="contact-methods">
+          <a href="https://wa.me/5511999999999" target="_blank" class="contact-card">
+            <div class="contact-icon">
+              <i class="pi pi-whatsapp"></i>
+            </div>
+            <h3>WhatsApp</h3>
+            <p>(11) 99999-9999</p>
+          </a>
+
+          <a href="mailto:contato@lextech.com.br" class="contact-card">
+            <div class="contact-icon">
+              <i class="pi pi-envelope"></i>
+            </div>
+            <h3>E-mail</h3>
+            <p>contato@lextech.com.br</p>
+          </a>
+
+          <a href="tel:+551133333333" class="contact-card">
+            <div class="contact-icon">
+              <i class="pi pi-phone"></i>
+            </div>
+            <h3>Telefone</h3>
+            <p>(11) 3333-3333</p>
+          </a>
+        </div>
+
+        <div class="social-links">
+          <h3>Siga-nos nas redes sociais</h3>
+          <div class="social-icons">
+            <a href="https://linkedin.com/company/lextech" target="_blank" aria-label="LinkedIn">
+              <i class="pi pi-linkedin"></i>
+            </a>
+            <a href="https://instagram.com/lextech" target="_blank" aria-label="Instagram">
+              <i class="pi pi-instagram"></i>
+            </a>
+            <a href="https://facebook.com/lextech" target="_blank" aria-label="Facebook">
+              <i class="pi pi-facebook"></i>
+            </a>
+            <a href="https://twitter.com/lextech" target="_blank" aria-label="Twitter">
+              <i class="pi pi-twitter"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -295,47 +366,142 @@ definePageMeta({
 
 /* Hero Section */
 .hero-section {
-  min-height: 90vh;
+  min-height: 100vh;
+  height: 100vh;
   background: linear-gradient(135deg, var(--law-red-900) 0%, var(--law-red-700) 100%);
-  padding: 8rem 2rem 4rem;
+  padding: 6rem 2rem 2rem;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
-.hero-section::before {
-  content: '';
+.hero-background-effects {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
   pointer-events: none;
+  overflow: hidden;
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float-orb 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  top: -250px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 200, 200, 0.3) 0%, transparent 70%);
+  top: 50%;
+  right: -150px;
+  animation-delay: 7s;
+}
+
+.orb-3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  bottom: -100px;
+  left: 30%;
+  animation-delay: 14s;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+.grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
 }
 
 .hero-content {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
   position: relative;
   z-index: 1;
 }
 
-.hero-logo {
-  margin-bottom: 2rem;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.875rem;
+  border-radius: 50px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.hero-badge i {
+  font-size: 1rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-title {
-  font-size: 3.5rem;
+  font-size: 2.75rem;
   font-weight: 800;
   color: white;
   line-height: 1.2;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fade-in-up 0.8s ease-out 0.2s both;
 }
 
 .hero-title .highlight {
@@ -343,19 +509,86 @@ definePageMeta({
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, white 50%, transparent 100%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  animation: fade-in-up 0.8s ease-out 0.4s both;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  animation: fade-in-up 0.8s ease-out 0.6s both;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .hero-cta {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  animation: fade-in-up 0.8s ease-out 0.8s both;
+}
+
+.hero-cta a {
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta a:hover {
+  transform: translateY(-2px);
 }
 
 .cta-primary {
@@ -363,14 +596,14 @@ definePageMeta({
   border-color: white;
   color: var(--law-red-900);
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 0.875rem 1.75rem;
 }
 
 .cta-primary:hover {
-  background: #f9fafb;
-  border-color: #f9fafb;
+  background: #e5e7eb;
+  border-color: #e5e7eb;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .cta-secondary {
@@ -378,7 +611,7 @@ definePageMeta({
   border-color: white;
   color: white;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 0.875rem 1.75rem;
 }
 
 .cta-secondary:hover {
@@ -391,38 +624,136 @@ definePageMeta({
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fade-in 1s ease-out 0.5s both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.floating-cards {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 420px;
 }
 
 .hero-card {
   background: white;
-  padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  max-width: 400px;
-  animation: float 6s ease-in-out infinite;
+  position: absolute;
+  transition: all 0.3s ease;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+.hero-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
 }
 
-.hero-card i {
-  font-size: 2.5rem;
-  color: var(--law-red-700);
+.card-1 {
+  width: 100%;
+  padding: 1.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  animation: float-main 6s ease-in-out infinite;
+}
+
+@keyframes float-main {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-15px); }
+}
+
+.card-2 {
+  width: 240px;
+  padding: 1rem;
+  top: 5%;
+  right: -10px;
+  z-index: 2;
+  animation: float-card-2 8s ease-in-out infinite;
+}
+
+@keyframes float-card-2 {
+  0%, 100% { transform: translateY(0px) rotate(2deg); }
+  50% { transform: translateY(-20px) rotate(-2deg); }
+}
+
+.card-3 {
+  width: 220px;
+  padding: 1rem;
+  bottom: 5%;
+  left: -30px;
+  z-index: 1;
+  animation: float-card-3 7s ease-in-out infinite;
+}
+
+@keyframes float-card-3 {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(15px) rotate(2deg); }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1rem;
 }
 
+.card-header i {
+  font-size: 1.75rem;
+  color: var(--law-red-700);
+}
+
+.card-status {
+  font-size: 0.7rem;
+  color: var(--law-red-700);
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  background: rgba(153, 27, 27, 0.1);
+  border-radius: 20px;
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
 .hero-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--gray-900);
   margin-bottom: 0.5rem;
 }
 
 .hero-card p {
   color: var(--gray-600);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.card-progress {
+  margin-bottom: 1rem;
+  height: 6px;
+  background: var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, var(--law-red-600), var(--law-red-700));
+  border-radius: 10px;
+  animation: progress-animate 3s ease-in-out infinite;
+}
+
+@keyframes progress-animate {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
 }
 
 .card-meta {
@@ -439,12 +770,35 @@ definePageMeta({
   gap: 0.5rem;
   color: var(--gray-700);
   font-weight: 500;
+  font-size: 0.875rem;
 }
 
 .card-meta i {
   font-size: 1rem;
   color: var(--law-red-700);
   margin: 0;
+}
+
+.mini-card-content {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.8rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.mini-card-content i {
+  font-size: 1.25rem;
+  color: var(--law-red-700);
+}
+
+.card-2 .mini-card-content i {
+  color: #10b981;
+}
+
+.card-3 .mini-card-content i {
+  color: #3b82f6;
 }
 
 /* Features Section */
@@ -660,42 +1014,144 @@ definePageMeta({
   font-size: 1.125rem;
 }
 
+.pricing-card a {
+  display: block;
+  text-decoration: none;
+}
+
 .plan-button {
   width: 100%;
   padding: 0.875rem;
   font-weight: 600;
 }
 
-/* CTA Section */
-.cta-section {
+/* Contact Section */
+.contact-section {
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--law-red-900) 0%, var(--law-red-700) 100%);
-  text-align: center;
+  background: white;
 }
 
-.cta-content {
-  max-width: 800px;
+.contact-content {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.cta-content h2 {
+.contact-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.contact-header h2 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--gray-900);
   margin-bottom: 1rem;
 }
 
-.cta-content p {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2rem;
+.contact-header p {
+  font-size: 1.125rem;
+  color: var(--gray-600);
 }
 
-.cta-buttons {
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.contact-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--gray-200);
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-card:hover {
+  border-color: var(--law-red-700);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(153, 27, 27, 0.15);
+}
+
+.contact-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--law-red-700) 0%, var(--law-red-800) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(153, 27, 27, 0.3);
+}
+
+.contact-icon i {
+  font-size: 2rem;
+  color: white;
+}
+
+.contact-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  font-size: 1.125rem;
+  color: var(--law-red-700);
+  font-weight: 500;
+}
+
+.social-links {
+  text-align: center;
+  padding-top: 3rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.social-links h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 1.5rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.social-icons a {
+  width: 56px;
+  height: 56px;
+  background: var(--gray-100);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: var(--law-red-700);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(153, 27, 27, 0.3);
+}
+
+.social-icons i {
+  font-size: 1.5rem;
 }
 
 /* Footer */
@@ -785,6 +1241,17 @@ definePageMeta({
     text-align: center;
   }
 
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stats {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+  }
+
   .hero-visual {
     display: none;
   }
@@ -803,8 +1270,40 @@ definePageMeta({
 }
 
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 6rem 1.5rem 3rem;
+  }
+
   .hero-title {
     font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .stat-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta a {
+    width: 100%;
+  }
+
+  .hero-cta a button {
+    width: 100%;
   }
 
   .section-header h2 {

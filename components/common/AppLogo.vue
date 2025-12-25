@@ -49,7 +49,7 @@ const sizeClass = computed(() => `size-${props.size}`)
   background-clip: text;
   font-weight: 800;
   position: relative;
-  padding-bottom: 3px;
+  padding-bottom: 1px;
 }
 
 .logo-ia::after {
