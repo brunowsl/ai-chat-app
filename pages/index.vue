@@ -415,7 +415,7 @@ definePageMeta({
 .orb-3 {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.3) 0%, transparent 70%);
   bottom: -100px;
   left: 30%;
   animation-delay: 14s;
@@ -520,7 +520,7 @@ definePageMeta({
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, white 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.8) 20%, white 50%, rgba(148, 163, 184, 0.8) 80%, transparent 100%);
   animation: shimmer 3s ease-in-out infinite;
 }
 
@@ -543,11 +543,12 @@ definePageMeta({
   gap: 1.25rem;
   margin-bottom: 2rem;
   padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.15) 0%, rgba(148, 163, 184, 0.1) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(148, 163, 184, 0.4);
   border-radius: 16px;
   animation: fade-in-up 0.8s ease-out 0.6s both;
+  box-shadow: 0 8px 16px rgba(30, 41, 59, 0.2);
 }
 
 .stat-item {
@@ -608,15 +609,15 @@ definePageMeta({
 
 .cta-secondary {
   background: transparent;
-  border-color: white;
+  border: 2px solid rgba(148, 163, 184, 0.4);
   color: white;
   font-weight: 600;
   padding: 0.875rem 1.75rem;
 }
 
 .cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: white;
+  background: rgba(148, 163, 184, 0.15);
+  border-color: rgba(148, 163, 184, 0.6);
   transform: translateY(-2px);
 }
 
@@ -645,6 +646,7 @@ definePageMeta({
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: absolute;
   transition: all 0.3s ease;
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .hero-card:hover {
@@ -798,7 +800,7 @@ definePageMeta({
 }
 
 .card-3 .mini-card-content i {
-  color: #3b82f6;
+  color: #334155;
 }
 
 /* Features Section */
